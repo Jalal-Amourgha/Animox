@@ -4,18 +4,17 @@ import googleIcon from "./google_icon.png";
 
 import mobileImg from "./mobile.png";
 import heroImg from "./hero.png";
-import aboutImg from "./about.png";
+
 import dotsImg from "./dots.png";
 
 import img from "./img.jpg";
-import img1 from "./img1.jpg";
 import img2 from "./img2.jpg";
 import img3 from "./img3.jpg";
 import img4 from "./img4.png";
 import img6 from "./img6.png";
 import img7 from "./img7.png";
 
-import banner from "./banner.png";
+import banner from "./banner.jpg";
 import banner1 from "./banner1.jpg";
 import banner2 from "./banner2.jpg";
 import banner3 from "./banner3.jpg";
@@ -48,7 +47,6 @@ import sponsor5 from "./sponsor5.png";
 
 export {
   heroImg,
-  aboutImg,
   mobileImg,
   dotsImg,
   img4,
@@ -56,7 +54,6 @@ export {
   apple,
   googleIcon,
   img,
-  img1,
   img2,
   img3,
   img6,
