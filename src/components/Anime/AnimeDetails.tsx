@@ -192,7 +192,6 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
         img={data.images.jpg.large_image_url}
         title={data.title_english}
         type="review"
-        userId={userId}
         color="primary"
       />
       <Modal
@@ -201,7 +200,6 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
         img={data.images.jpg.large_image_url}
         title={data.title_english}
         type="watchlist"
-        userId={userId}
         color="primary"
       />
     </>

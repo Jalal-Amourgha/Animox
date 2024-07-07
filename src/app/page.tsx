@@ -23,7 +23,7 @@ export default function Home() {
       <DownloadApp />
       <section className="container mt-[100px] grid grid-cols-2 md:grid-cols-5 gap-10">
         {sponsors.map((sponsor) => (
-          <div>
+          <div key={sponsor.id}>
             <Image
               src={sponsor.img}
               className="w-[130px] grayscale mx-auto"
