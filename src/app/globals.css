@@ -275,16 +275,16 @@ abbr {
   position: relative;
 }
 
+.MuiPaginationItem-root {
+  color: white !important;
+  font-size: 22px;
+  font-weight: 500 !important;
+  border: 1px solid var(--primary2) !important;
+}
+
 .Mui-selected {
   color: black !important;
   background: var(--primary2) !important;
-}
-
-.MuiPaginationItem-root {
-  color: white;
-  font-size: 22px;
-  font-weight: 500;
-  border: 1px solid var(--primary2) !important;
 }
 
 @media (max-width: 1000px) {
@@ -307,4 +307,11 @@ abbr {
   .flex__elements > div {
     flex-basis: 100%;
   }
+}
+
+.css-1c99szj-MuiRating-icon {
+  color: #888888 !important;
+}
+.css-1i8np5r-MuiRating-root {
+  font-size: 40px !important;
 }

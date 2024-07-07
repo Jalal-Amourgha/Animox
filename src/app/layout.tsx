@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppWrapper } from "@/context";
-import Providers from "@/components/Providers";
 import App from "./App";
+import { AuthProvider } from "./Provider";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Animox",
-  description: "Explore Th Diverse Realms of Anime Magic",
+  description: "Anime website",
 };
 
 export default function RootLayout({
@@ -16,12 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Providers>
-          <AppWrapper>
-            <App children={children} />
-          </AppWrapper>
-        </Providers>
+      <body className={inter.className}>
+        <AuthProvider>
+          <App>{children}</App>
+        </AuthProvider>
       </body>
     </html>
   );

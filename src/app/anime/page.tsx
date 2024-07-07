@@ -1,18 +1,13 @@
-import type { Metadata } from "next";
 import {
-  SearchBar,
-  CustomFilterAnime,
   Animes,
   BackgroundImg,
+  CustomFilterAnime,
+  SearchBar,
 } from "@/components";
-import { scores, seasons, status, types } from "@/_data";
+import { status, types, scores, seasons } from "@/constants/_data";
+import React from "react";
 
-export const metadata: Metadata = {
-  title: "Animox/Anime",
-  description: "Explore Th Diverse Realms of Anime Magic",
-};
-
-export default function Home() {
+const AnimePage = () => {
   return (
     <>
       <BackgroundImg classes="bg-bg-img-2 bg-top" type="Anime" />
@@ -36,4 +31,6 @@ export default function Home() {
       <Animes />
     </>
   );
-}
+};
+
+export default AnimePage;

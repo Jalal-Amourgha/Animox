@@ -1,70 +1,70 @@
-import Hero from "./Hero";
-import Navbar from "./Navbar";
-import Button from "./Button";
-import Animes from "./Animes";
-import AnimeCard from "./AnimeCard";
+// Home Components
+import AboutUs from "./Home/AboutUs";
+import DownloadApp from "./Home/DownloadApp";
+import Hero from "./Home/Hero";
+import JoinUs from "./Home/JoinUs";
+import AnimeSlider from "./Home/AnimeSlider";
 
-import SearchBar from "./SearchBar";
-import CustomFilterAnime from "./CustomFilterAnime";
-import AnimeSlider from "./AnimesSlider";
-import SectionHeader from "./SectionHeader";
-import AboutUs from "./AboutUs";
-import JoinUs from "./JoinUs";
-import DownloadApp from "./DownloadApp";
-import Subscription from "./Subscription";
-import Footer from "./Footer";
-import AnimeDetails from "./AnimeDetails";
-import Recommendations from "./Recommendations";
-import AnimeModal from "./AnimeModal";
-import Characters from "./Characters";
-import AnimeTrailer from "./AnimeTrailer";
-import Reviews from "./Reviews";
-import RegisterAndLogin from "./RegisterAndLogin";
+// Shared Components
+import Navbar from "./Shared/Navbar";
+import Footer from "./Shared/Footer";
+import Header from "./Shared/Header";
+import Loader from "./Shared/Loader";
+import BackgroundImg from "./Shared/BackgroundImg";
+import SearchBar from "./Shared/SearchBar";
+import Modal from "./Shared/Modal";
 
-import UserInfo from "./UserInfo";
-import Loading from "./Loading";
-import UserWatchlist from "./UserWatchlist";
-import UserReadlist from "./UserReadlist";
-import UserReviews from "./UserReviews";
-import Popup from "./Popup";
-import BackgroundImg from "./BackgroundImg";
-import MangaCard from "./MangaCard";
-import Manga from "./Manga";
-import CustomFilterManga from "./CustomFilterManga";
-import MangaDetails from "./MangaDetails";
-import PopularMembers from "./PopularMembers";
+// Anime Components
+import AnimeCard from "./Anime/AnimeCard";
+import CustomFilterAnime from "./Anime/CustomFilterAnime";
+import Animes from "./Anime/Animes";
+import AnimeDetails from "./Anime/AnimeDetails";
+import Recommendations from "./Anime/Recommendations";
+import Reviews from "./Anime/Reviews";
+import Characters from "./Anime/Characters";
+
+// Manga Components
+import FilterManga from "./Manga/FilterManga";
+import MangaCard from "./Manga/MangaCard";
+import MangaDetails from "./Manga/MangaDetails";
+
+// Members Components
+import AllMembers from "./Members/AllMembers";
+import MembersStats from "./Members/MembersStats";
+import PopularMembers from "./Members/PopularMembers";
+import EditImgModal from "./Profile/EditImgModal";
+import UserReadlist from "./Profile/UserReadlist";
+import UserReviews from "./Profile/UserReviews";
+import UserWatchlist from "./Profile/UserWatchlist";
+
 export {
   Hero,
-  Navbar,
-  Button,
-  Animes,
-  AnimeCard,
-  SearchBar,
-  AnimeSlider,
-  SectionHeader,
-  CustomFilterAnime,
   AboutUs,
-  JoinUs,
   DownloadApp,
+  JoinUs,
+  AnimeSlider,
+  Navbar,
+  Footer,
+  Header,
+  Loader,
+  BackgroundImg,
+  SearchBar,
+  AnimeCard,
+  Animes,
+  CustomFilterAnime,
+  Modal,
   AnimeDetails,
-  Recommendations,
-  AnimeModal,
-  AnimeTrailer,
   Characters,
+  Recommendations,
   Reviews,
-  RegisterAndLogin,
-  UserInfo,
-  Loading,
+  FilterManga,
+  MangaCard,
+  MangaDetails,
+  AllMembers,
+  MembersStats,
+  PopularMembers,
+  EditImgModal,
+  UserReadlist,
   UserWatchlist,
   UserReviews,
-  UserReadlist,
-  PopularMembers,
-  Popup,
-  BackgroundImg,
-  MangaCard,
-  Manga,
-  CustomFilterManga,
-  MangaDetails,
-  Subscription,
-  Footer,
 };

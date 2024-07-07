@@ -98,12 +98,23 @@ export interface MangaProps {
   genres: any[];
 }
 export interface UserProps {
-  username: string;
-  email: string;
-  image: string;
-  banner: string;
-  reviews: any[] | any;
-  watchlist: any[] | any;
-  readlist: any[] | any;
-  createdAt: string;
+  _id: string;
+  username?: string;
+  email?: string;
+  image?: string;
+  banner?: string;
+  reviews?: any[] | any;
+  watchlist?: any[] | any;
+  readlist?: any[] | any;
+  createdAt?: string;
+}
+
+export interface PopularAnimesProps {
+  title?: string;
+  type?: string;
+  id?: string;
+  url?: string;
+  api?: string;
+  header?: boolean;
+  btn?: boolean;
 }

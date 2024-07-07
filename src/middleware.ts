@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  const publicPaths = path === "/signup";
+  const publicPaths = path === "/sign-up" || path === "/sign-in";
 
   if (publicPaths && token) {
     return NextResponse.redirect(new URL("/profile", req.nextUrl));
@@ -19,5 +19,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/signup", "/profile"],
+  matcher: ["/sign-up", "sign-in", "/profile"],
 };

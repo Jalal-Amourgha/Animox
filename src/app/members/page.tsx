@@ -1,14 +1,17 @@
-import type { Metadata } from "next";
+"use client";
+import {
+  AllMembers,
+  BackgroundImg,
+  Loader,
+  MembersStats,
+  PopularMembers,
+} from "@/components";
+import { useAppContext } from "@/context";
+import { useEffect, useState } from "react";
 
-import { BackgroundImg, PopularMembers, SectionHeader } from "@/components";
-import AllMembers from "@/components/AllMembers";
-import MembersStats from "@/components/MembersStats";
-
-export const metadata: Metadata = {
-  title: "Animox/Members",
-  description: "Explore Th Diverse Realms of Anime Magic",
-};
 const MembersPage = () => {
+  const { users } = useAppContext();
+
   return (
     <>
       <BackgroundImg classes="bg-bg-img-4" type="members" />
@@ -18,10 +21,11 @@ const MembersPage = () => {
           Anime and Manga lovers, critics and friends.
         </h1>
 
-        <PopularMembers />
+        {users && <PopularMembers data={users} />}
 
-        <MembersStats />
-        <AllMembers />
+        {/* <MembersStats /> */}
+
+        {users && <AllMembers data={users} />}
       </div>
     </>
   );
