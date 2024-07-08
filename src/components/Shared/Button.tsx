@@ -22,7 +22,7 @@ export const Button = ({
       }
    
       h-fit
-      py-2 px-6 border-2  rounded-md text-xl font-medium text-bg-color duration-500 hover:bg-bg-color
+      py-2 px-6 border-2  rounded-md text-xl font-medium text-bg-color duration-500 hover:bg-inherit
         
       
       ${classes}

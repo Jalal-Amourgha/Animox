@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AnimeProps } from "@/types";
+import { AnimeCard } from "@/components";
 
 const AppContext = createContext<any>(undefined);
 
@@ -65,7 +66,13 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     const res = await fetch(`${url}`, { cache: "no-store" });
     const data = await res.json();
 
-    return data.data;
+    return data.data.map((item: AnimeProps, index: number) => (
+      <AnimeCard
+        key={(Math.random() * 1000000).toFixed()}
+        anime={item}
+        index={index}
+      />
+    ));
   };
 
   useEffect(() => {
