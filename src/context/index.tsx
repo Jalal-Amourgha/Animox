@@ -2,9 +2,10 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { fetchData } from "@/actions/FetchData";
+// import { fetchData } from "@/actions/FetchData";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { AnimeProps } from "@/types";
 
 const AppContext = createContext<any>(undefined);
 
@@ -54,23 +55,32 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
-    if (inView && fetchingPopularAnimes) {
-      fetchData(
-        `${baseUrl}anime?page=${page}&limit=20&order_by=popularity`,
-        "anime"
-      ).then((res) => {
-        setData([...data, ...res]);
-      });
-      setPage((prev) => prev + 1);
-    }
-  }, [inView, fetchingPopularAnimes]);
-
-  useEffect(() => {
     if (!users.length && fetchOneTime) {
       fetchUsers();
       setFetchOneTime(false);
     }
   }, []);
+
+  const fetchAnimes = async (url: string, type: string) => {
+    const res = await fetch(`${url}`, { cache: "no-store" });
+    const data = await res.json();
+
+    return data.data;
+  };
+
+  useEffect(() => {
+    if (inView && fetchingPopularAnimes) {
+      fetchAnimes(
+        `${baseUrl}anime?page=${page}&limit=20&order_by=popularity`,
+        "anime"
+      ).then((res: any) => {
+        setData([...data, ...res]);
+      });
+      setPage((prev) => prev + 1);
+    }
+
+    console.log("test");
+  }, [inView, fetchingPopularAnimes]);
 
   return (
     <AppContext.Provider

@@ -10,7 +10,14 @@ const Animes = () => {
   return (
     <section className="container mb-10">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-10">
-        {data}
+        {data &&
+          data.data.map((item: AnimeProps, index: number) => (
+            <AnimeCard
+              key={(Math.random() * 1000000).toFixed()}
+              anime={item}
+              index={index}
+            />
+          ))}
       </div>
 
       {hideLoader ? (
