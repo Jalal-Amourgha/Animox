@@ -5,7 +5,9 @@ import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { PiCaretUpDownLight } from "react-icons/pi";
 import { scores, seasons, status, types } from "@/constants/_data";
-import { fetchData } from "@/actions/FetchData";
+import { AnimeProps } from "@/types";
+import AnimeCard from "./AnimeCard";
+// import { fetchData } from "@/actions/FetchData";
 
 interface CustomFilterProps {
   dataType: string[] | number[];
@@ -29,6 +31,19 @@ const CustomFilterAnime = ({ dataType, title, classes }: CustomFilterProps) => {
   } = useAppContext();
   const baseUrl = "https://api.jikan.moe/v4/";
   const [selectedOption, setSelectedOption] = useState<any>(title);
+
+  const fetchData = async (url: string, type: string) => {
+    const res = await fetch(`${url}`, { cache: "no-store" });
+    const data = await res.json();
+
+    return data.data.map((item: AnimeProps, index: number) => (
+      <AnimeCard
+        key={(Math.random() * 1000000).toFixed()}
+        anime={item}
+        index={index}
+      />
+    ));
+  };
 
   useEffect(() => {
     if (

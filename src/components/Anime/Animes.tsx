@@ -1,6 +1,8 @@
 "use client";
 
 import { useAppContext } from "@/context";
+import { AnimeProps } from "@/types";
+import AnimeCard from "./AnimeCard";
 
 const Animes = () => {
   const { data, ref, hideLoader } = useAppContext();

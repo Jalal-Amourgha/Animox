@@ -1,15 +1,30 @@
 "use client";
 
-import { fetchData } from "@/actions/FetchData";
+// import { fetchData } from "@/actions/FetchData";
 import { AnimesList } from "@/constants/_data";
 import { useAppContext } from "@/context";
 import { Combobox, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import AnimeCard from "../Anime/AnimeCard";
+import { AnimeProps } from "@/types";
 const SearchBar = ({ type }: { type: string }) => {
   const { setData, setMangaData, color, setHideLoader } = useAppContext();
   const [selectedAnime, setSelectedAnime] = useState<any>("");
   const [query, setQuery] = useState("");
+
+  const fetchData = async (url: string, type: string) => {
+    const res = await fetch(`${url}`, { cache: "no-store" });
+    const data = await res.json();
+
+    return data.data.map((item: AnimeProps, index: number) => (
+      <AnimeCard
+        key={(Math.random() * 1000000).toFixed()}
+        anime={item}
+        index={index}
+      />
+    ));
+  };
 
   useEffect(() => {
     if (!selectedAnime) {
