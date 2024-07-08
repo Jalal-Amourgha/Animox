@@ -32,11 +32,9 @@ const AnimeCard = ({ anime, index }: AnimeCardProps) => {
         duration: 0.5,
       }}
       viewport={{ amount: 0 }}
+      onClick={() => router.push(`/anime/${mal_id}`)}
     >
-      <div
-        className="w-full h-[55vh] md:h-[45vh] relative"
-        onClick={() => router.push(`/anime/${mal_id}`)}
-      >
+      <div className="w-full h-[55vh] md:h-[45vh] relative">
         <Image
           src={images.jpg.large_image_url}
           fill

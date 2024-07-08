@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Header from "../Shared/Header";
 import { Button } from "../Shared/Button";
-import { PopularAnimesProps } from "@/types";
+import { AnimeProps, PopularAnimesProps } from "@/types";
 
 const AnimeSlider = ({
   title,
@@ -85,15 +85,23 @@ const AnimeSlider = ({
           <h1>Loading ...</h1>
         ) : (
           <Slider {...settings}>
-            {data.map((anime, index) => (
-              <div className="relative h-[50vh] md:h-[40vh] w-full" key={index}>
-                <Image
-                  src={anime.images.jpg.large_image_url}
-                  sizes="100%"
-                  fill
-                  className="rounded-lg object-cover cursor-pointer"
-                  alt="anime img"
-                />
+            {data.map((anime: AnimeProps, index) => (
+              <div key={index}>
+                <div className="relative h-[50vh] md:h-[40vh] w-full">
+                  <Image
+                    src={anime.images.jpg.large_image_url}
+                    sizes="100%"
+                    fill
+                    className="rounded-lg object-cover cursor-pointer"
+                    alt="anime img"
+                  />
+                </div>
+                <h1
+                  className="text-xl text-white font-semibold hover:text-primary line-clamp-1 mt-2 cursor-pointer"
+                  onClick={() => router.push(`/anime/${anime.mal_id}`)}
+                >
+                  {anime.title}
+                </h1>
               </div>
             ))}
           </Slider>

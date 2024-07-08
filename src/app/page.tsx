@@ -14,9 +14,9 @@ export default function Home() {
       <AboutUs />
 
       <AnimeSlider
-        title="Upcoming Animes"
+        title="Popular Animes"
         type="upcoming"
-        url="https://api.jikan.moe/v4/anime?status=upcoming&limit=15&order_by=popularity"
+        url="https://api.jikan.moe/v4/anime?limit=15&order_by=popularity"
       />
       <JoinUs />
 

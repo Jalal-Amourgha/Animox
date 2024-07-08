@@ -3,6 +3,7 @@
 import { fetchDataDetails } from "@/actions/FetchDataDetails";
 import {
   AnimeDetails,
+  AnimeTrailer,
   Characters,
   Loader,
   Recommendations,
@@ -29,11 +30,15 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
   const [userId, setUserId] = useState<string>("");
   let fetchOneTime = true;
 
-  // useEffect(() => {
-  //   if (session?.user?.email) {
-  //     setUserId(session?.user?.email);
-  //   }
-  // }, [session?.user?.email]);
+  const fetchAnimeReview = async () => {
+    const res = await fetch(
+      `https://api.jikan.moe/v4/anime/${params.id}/reviews`
+    );
+
+    const data = await res.json();
+
+    return setAnimeReviews(res);
+  };
 
   useEffect(() => {
     if (params.id && fetchOneTime) {
@@ -53,12 +58,6 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
         `https://api.jikan.moe/v4/anime/${params.id}/recommendations`
       ).then((res) => {
         setAnimeRecommendations(res.slice(0, 25));
-        console.log(res);
-      });
-      fetchDataDetails(
-        `https://api.jikan.moe/v4/anime/${params.id}/reviews`
-      ).then((res) => {
-        setAnimeReviews(res);
         console.log(res);
       });
     }
@@ -87,14 +86,13 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
 
       <Characters data={animeCharacters} />
 
-      {/* {animeDetails && animeDetails.trailer && (
+      {animeDetails && animeDetails.trailer && (
         <AnimeTrailer url={animeDetails.trailer.embed_url} />
-      )} */}
+      )}
 
       {animeRecommendations && <Recommendations data={animeRecommendations} />}
 
       {animeReviews && <Reviews data={animeReviews} />}
-      {/* <Popup /> */}
     </>
   );
 };

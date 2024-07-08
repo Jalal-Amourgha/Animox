@@ -32,108 +32,18 @@ const CustomFilterAnime = ({ dataType, title, classes }: CustomFilterProps) => {
   const baseUrl = "https://api.jikan.moe/v4/";
   const [selectedOption, setSelectedOption] = useState<any>(title);
 
-  // useEffect(() => {
-  //   if (
-  //     selectedOption === "Statu" ||
-  //     selectedOption === "Type" ||
-  //     selectedOption === "Score" ||
-  //     selectedOption === "Year"
-  //   ) {
-  //     return;
-  //   }
+  useEffect(() => {
+    if (
+      selectedOption === "Statu" ||
+      selectedOption === "Type" ||
+      selectedOption === "Score" ||
+      selectedOption === "Year"
+    ) {
+      return;
+    }
 
-  //   setPage(1);
-
-  //   if (fetchingPopularAnimes) {
-  //     setFetchingPopularAnimes(false);
-  //     setData([]);
-  //   }
-
-  //   if (scores.includes(selectedOption)) {
-  //     fetchData(
-  //       `${baseUrl}anime?page=1&min_score=${selectedOption}&max_score=${
-  //         selectedOption + 1
-  //       }&order_by=popularity`,
-  //       "anime"
-  //     ).then((res) => {
-  //       setData(res);
-  //     });
-  //   } else if (seasons.includes(selectedOption)) {
-  //     fetchData(
-  //       `${baseUrl}anime?page=1&order_by=popularity&start_date=${selectedOption}-01-01&end_date=${selectedOption}-12-12`,
-  //       "anime"
-  //     ).then((res) => {
-  //       setData(res);
-  //     });
-  //   } else if (status.includes(selectedOption)) {
-  //     fetchData(
-  //       `${baseUrl}anime?page=1&status=${selectedOption}&order_by=popularity`,
-  //       "anime"
-  //     ).then((res) => {
-  //       setData(res);
-  //     });
-  //   } else if (types.includes(selectedOption)) {
-  //     fetchData(
-  //       `${baseUrl}anime?page=1&type=${selectedOption}&order_by=popularity&rating=pg13&rating=r17`,
-  //       "anime"
-  //     ).then((res) => {
-  //       setData(res);
-  //     });
-  //   }
-  //   setHideLoader(false);
-  //   setSelectedFilter(selectedOption);
-  // }, [selectedOption, fetchingPopularAnimes]);
-
-  // useEffect(() => {
-  //   if (page > 1) {
-  //     if (
-  //       selectedOption === "Statu" ||
-  //       selectedOption === "Type" ||
-  //       selectedOption === "Score" ||
-  //       selectedOption === "Year"
-  //     ) {
-  //       return;
-  //     }
-
-  //     if (scores.includes(selectedFilter)) {
-  //       fetchData(
-  //         `${baseUrl}anime?page=${page}&min_score=${selectedFilter}&max_score=${
-  //           selectedFilter + 1
-  //         }&order_by=popularity`,
-  //         "anime"
-  //       ).then((res) => {
-  //         setData([...data, ...res]);
-  //       });
-  //     } else if (seasons.includes(selectedFilter)) {
-  //       fetchData(
-  //         `${baseUrl}anime?page=1&order_by=popularity&start_date=${selectedFilter}-01-01&end_date=${selectedFilter}-12-12`,
-  //         "anime"
-  //       ).then((res) => {
-  //         setData([...data, ...res]);
-  //       });
-  //     } else if (status.includes(selectedFilter)) {
-  //       fetchData(
-  //         `${baseUrl}anime?page=1&status=${selectedFilter}&order_by=popularity`,
-  //         "anime"
-  //       ).then((res) => {
-  //         setData([...data, ...res]);
-  //       });
-  //     } else if (types.includes(selectedFilter)) {
-  //       fetchData(
-  //         `${baseUrl}anime?page=1&type=${selectedFilter}&order_by=popularity&rating=pg13&rating=r17`,
-  //         "anime"
-  //       ).then((res) => {
-  //         setData([...data, ...res]);
-  //       });
-  //     }
-  //   }
-  // }, [page]);
-
-  // useEffect(() => {
-  //   if (inView) {
-  //     setPage(page + 1);
-  //   }
-  // }, [inView]);
+    setSelectedFilter(selectedOption);
+  }, [selectedOption]);
 
   return (
     <div className="relative">

@@ -8,10 +8,6 @@ import { Button } from "../Shared/Button";
 const JoinUs = () => {
   const router = useRouter();
 
-  const handleSignup = () => {
-    // router.push("/signup");
-  };
-
   return (
     <section className="my-20">
       <div className="container">
@@ -33,7 +29,7 @@ const JoinUs = () => {
               title="Sign up"
               bg={true}
               classes="mt-5"
-              handleClick={handleSignup}
+              handleClick={() => router.push("/sign-up")}
             />
           </div>
         </div>

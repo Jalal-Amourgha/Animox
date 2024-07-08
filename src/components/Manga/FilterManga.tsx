@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const FilterManga = () => {
   const [data, setData] = useState<any>([]);
   const [selectedMangaType, setSelectedMangaType] = useState<String>("manga");
-  const [page, setPage] = useState<Number>(1);
+  const [page, setPage] = useState<number>(1);
 
   const handleSelectedType = (type: string) => {
     setSelectedMangaType(type);
@@ -33,6 +33,10 @@ const FilterManga = () => {
     });
   }, [selectedMangaType, page]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [selectedMangaType]);
+
   if (!data) {
     return;
   }
@@ -43,9 +47,9 @@ const FilterManga = () => {
         {mangaTypes.map((type, index) => (
           <div
             className={`${
-              selectedMangaType === type.labe ? "bg-primary2" : "bg-white"
+              selectedMangaType === type.type ? "bg-primary2" : "bg-white"
             }  text-center text-xl py-2 px-4 rounded-full text-bg-color font-semibold hover:bg-primary2 cursor-pointer`}
-            onClick={() => handleSelectedType(type.labe)}
+            onClick={() => handleSelectedType(type.type)}
             key={index}
           >
             {type.name}
@@ -62,6 +66,7 @@ const FilterManga = () => {
           count={10}
           shape="rounded"
           onChange={handleChange}
+          page={page}
           size="large"
         />
       </div>

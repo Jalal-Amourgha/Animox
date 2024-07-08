@@ -27,10 +27,6 @@ const MangaCard = ({ manga, index }: MangaCardProps) => {
     return format(new Date(date), "MMM yyyy");
   };
 
-  const viewAnimeDetails = () => {
-    router.push(`manga/${mal_id}`);
-  };
-
   return (
     <MotionDiv
       variants={variants}
@@ -42,11 +38,9 @@ const MangaCard = ({ manga, index }: MangaCardProps) => {
         duration: 0.5,
       }}
       viewport={{ amount: 0 }}
+      onClick={() => router.push(`manga/${mal_id}`)}
     >
-      <div
-        className="w-full h-[55vh] md:h-[45vh] relative"
-        onClick={viewAnimeDetails}
-      >
+      <div className="w-full h-[55vh] md:h-[45vh] relative">
         <Image
           src={images.jpg.large_image_url}
           fill

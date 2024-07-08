@@ -139,10 +139,10 @@ export const status = ["upcoming", "airing", "complete"];
 export const types = ["tv", "movie", "ova", "ona", "special"];
 
 export const mangaTypes = [
-  { name: "Manga", labe: "manga" },
-  { name: "Novel", labe: "novel" },
-  { name: "Light Novel", labe: "lightnovel" },
-  { name: "Oneshot", labe: "oneshot" },
-  { name: "Manhua", labe: "manhwa" },
-  { name: "Manhwa", labe: "manhua" },
+  { name: "Manga", type: "manga" },
+  { name: "Novel", type: "novel" },
+  { name: "Light Novel", type: "lightnovel" },
+  { name: "Oneshot", type: "oneshot" },
+  { name: "Manhua", type: "manhua" },
+  { name: "Manhwa", type: "manhwa" },
 ];

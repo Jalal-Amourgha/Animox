@@ -69,7 +69,9 @@ const Modal = ({
       console.log(error);
     } finally {
       setRate(0);
+      setNote("");
       closeModal();
+      setReFetchUserData(reFetchUserData + 1);
     }
   };
 
@@ -90,7 +92,6 @@ const Modal = ({
         method: "PATCH",
         body: JSON.stringify({
           type: "review",
-
           note: note,
           score: rate,
           title: title,
@@ -107,6 +108,7 @@ const Modal = ({
       console.log(error);
     } finally {
       closeModal();
+      setReFetchUserData(reFetchUserData + 1);
     }
   };
 
@@ -180,7 +182,7 @@ const Modal = ({
                             onChangeActive={(event, newHover) => {
                               setHover(newHover);
                             }}
-                            precision={0.5}
+                            precision={0.1}
                             icon={<StarRoundedIcon fontSize="inherit" />}
                             emptyIcon={
                               <StarOutlineRoundedIcon fontSize="inherit" />
@@ -225,7 +227,7 @@ const Modal = ({
                             onChangeActive={(event, newHover) => {
                               setHover(newHover);
                             }}
-                            precision={0.5}
+                            precision={0.1}
                             icon={<StarRoundedIcon fontSize="inherit" />}
                             emptyIcon={
                               <StarOutlineRoundedIcon fontSize="inherit" />

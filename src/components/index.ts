@@ -22,6 +22,7 @@ import AnimeDetails from "./Anime/AnimeDetails";
 import Recommendations from "./Anime/Recommendations";
 import Reviews from "./Anime/Reviews";
 import Characters from "./Anime/Characters";
+import AnimeTrailer from "./Anime/AnimeTrailer";
 
 // Manga Components
 import FilterManga from "./Manga/FilterManga";
@@ -50,6 +51,7 @@ export {
   BackgroundImg,
   SearchBar,
   AnimeCard,
+  AnimeTrailer,
   Animes,
   CustomFilterAnime,
   Modal,

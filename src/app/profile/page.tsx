@@ -9,11 +9,10 @@ import {
 } from "@/components";
 import { avatarImgs, bannerImgs, filterOptions } from "@/constants";
 import { useAppContext } from "@/context";
-import { UserProps } from "@/types";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
 
