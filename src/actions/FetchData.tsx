@@ -4,7 +4,7 @@ import { AnimeCard, MangaCard } from "@/components";
 import { AnimeProps, MangaProps } from "@/types";
 
 export const fetchData = async (url: string, type: string) => {
-  const res = await fetch(`${url}`);
+  const res = await fetch(`${url}`, { cache: "no-cache" });
   const data = await res.json();
 
   if (type === "anime") {

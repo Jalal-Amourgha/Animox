@@ -47,14 +47,15 @@ const Navbar = () => {
     >
       <div className="container">
         <nav className="flex justify-between w-full">
-          <div
+          <Link
+            href={"/"}
             className={`flex items-center gap-3 text-2xl font-semibold w-fit ${
               color === "yellow" ? "text-primary2" : "text-primary"
             }`}
           >
             <BsYinYang />
             <h1>Animox</h1>
-          </div>
+          </Link>
 
           <ul className="hidden md:flex items-center list-none relative">
             {navLinks.map((link) => (

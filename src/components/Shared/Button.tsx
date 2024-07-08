@@ -1,4 +1,8 @@
+"use client";
+
+import { useAppContext } from "@/context";
 import { ButtonProps } from "@/types";
+import { useEffect, useState } from "react";
 
 export const Button = ({
   title,
@@ -6,17 +10,21 @@ export const Button = ({
   handleClick,
   classes = "",
 }: ButtonProps) => {
+  const { color } = useAppContext();
+
   return (
     <button
       className={`
-      text-xl font-medium
+      ${
+        color === "yellow"
+          ? "bg-primary2 border-primary2 hover:text-primary2"
+          : "bg-primary border-primary hover:text-primary"
+      }
    
       h-fit
-      ${
-        bg
-          ? "bg-primary py-2 px-6 border-2 border-primary rounded-md text-xl font-medium text-bg-color duration-500 hover:bg-bg-color hover:text-primary"
-          : "bg-bg-color text-primary"
-      }
+      py-2 px-6 border-2  rounded-md text-xl font-medium text-bg-color duration-500 hover:bg-bg-color
+        
+      
       ${classes}
       `}
       onClick={handleClick}
