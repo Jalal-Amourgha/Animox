@@ -1,53 +1,63 @@
 "use client";
 
-// import { fetchData } from "@/actions/FetchData";
 import { AnimesList } from "@/constants/_data";
 import { useAppContext } from "@/context";
 import { Combobox, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import AnimeCard from "../Anime/AnimeCard";
-import { AnimeProps } from "@/types";
+import { AnimeProps, MangaProps } from "@/types";
+import MangaCard from "../Manga/MangaCard";
 const SearchBar = ({ type }: { type: string }) => {
   const { setData, setMangaData, color, setHideLoader } = useAppContext();
   const [selectedAnime, setSelectedAnime] = useState<any>("");
   const [query, setQuery] = useState("");
 
-  // const fetchData = async (url: string, type: string) => {
-  //   const res = await fetch(`${url}`, { cache: "no-store" });
-  //   const data = await res.json();
+  const fetchData = async (url: string, type: string) => {
+    const res = await fetch(`${url}`, { cache: "no-store" });
+    const data = await res.json();
 
-  //   return data.data.map((item: AnimeProps, index: number) => (
-  //     <AnimeCard
-  //       key={(Math.random() * 1000000).toFixed()}
-  //       anime={item}
-  //       index={index}
-  //     />
-  //   ));
-  // };
+    if (type === "anime") {
+      return data.data.map((item: AnimeProps, index: number) => (
+        <AnimeCard
+          key={(Math.random() * 1000000).toFixed()}
+          anime={item}
+          index={index}
+        />
+      ));
+    } else {
+      return data.data.map((item: MangaProps, index: number) => (
+        <MangaCard
+          key={(Math.random() * 1000000).toFixed()}
+          manga={item}
+          index={index}
+        />
+      ));
+    }
+  };
 
-  // useEffect(() => {
-  //   if (!selectedAnime) {
-  //     return console.log("stop");
-  //   }
+  useEffect(() => {
+    if (!selectedAnime) {
+      return;
+    }
 
-  //   if (type === "manga") {
-  //     fetchData(
-  //       `https://api.jikan.moe/v4/manga?q=${selectedAnime}&limit=1`,
-  //       "manga"
-  //     ).then((res) => {
-  //       setMangaData(res);
-  //     });
-  //   } else {
-  //     fetchData(
-  //       `https://api.jikan.moe/v4/anime?q=${selectedAnime}&limit=1`,
-  //       "anime"
-  //     ).then((res) => {
-  //       setData(res);
-  //       setHideLoader(true);
-  //     });
-  //   }
-  // }, [selectedAnime]);
+    if (type === "manga") {
+      fetchData(
+        `https://api.jikan.moe/v4/manga?q=${selectedAnime}&limit=1`,
+        "manga"
+      ).then((res) => {
+        setMangaData(res);
+      });
+    } else {
+      fetchData(
+        `https://api.jikan.moe/v4/anime?q=${selectedAnime}&limit=1`,
+        "anime"
+      ).then((res) => {
+        setData(res);
+        setHideLoader(true);
+      });
+    }
+  }, [selectedAnime]);
 
   const filteredAnimes =
     query === ""

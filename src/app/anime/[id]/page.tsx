@@ -37,7 +37,7 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
 
     const data = await res.json();
 
-    return setAnimeReviews(res);
+    return setAnimeReviews(data.data);
   };
 
   useEffect(() => {
@@ -45,21 +45,20 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
       fetchDataDetails(`https://api.jikan.moe/v4/anime/${params.id}`).then(
         (res) => {
           setAnimeDetails(res);
-          console.log(res);
         }
       );
       fetchDataDetails(
         `https://api.jikan.moe/v4/anime/${params.id}/characters`
       ).then((res) => {
         setAnimeCharacters(res.slice(0, 25));
-        console.log(res);
       });
       fetchDataDetails(
         `https://api.jikan.moe/v4/anime/${params.id}/recommendations`
       ).then((res) => {
         setAnimeRecommendations(res.slice(0, 25));
-        console.log(res);
       });
+
+      fetchAnimeReview();
     }
 
     fetchOneTime = false;

@@ -309,10 +309,9 @@ abbr {
   }
 }
 
-.css-1c99szj-MuiRating-icon {
+.MuiRating-root > * span {
   color: #888888 !important;
 }
-.css-1i8np5r-MuiRating-root,
-.css-dy5l36-MuiRating-root {
+.MuiRating-root {
   font-size: 40px !important;
 }
