@@ -1,11 +1,11 @@
 "use client";
-import { fetchDataDetails } from "@/actions/FetchDataDetails";
 import {
   Characters,
   MangaDetails,
   Recommendations,
   Reviews,
 } from "@/components";
+import { manga } from "@/constants/_manga";
 
 import { useEffect, useState } from "react";
 
@@ -16,61 +16,28 @@ interface PageProps {
 }
 
 const MangaPage = ({ params }: PageProps) => {
-  const [mangaDetails, setMangaDetails] = useState({ mal_id: "" });
-  const [mangaCharacters, setMangaCharacters] = useState<any>([]);
-  const [mangaRecommendations, setMangaRecommendations] = useState<any>([]);
-  const [mangaStats, setMangaStats] = useState([]);
-  const [mangaReviews, setMangaReviews] = useState<any>([]);
-
-  let fetchOneTime = true;
+  const [mangaDetails, setMangaDetails] = useState<any>({ mal_id: "" });
 
   useEffect(() => {
-    if (params.id && fetchOneTime) {
-      fetchDataDetails(`https://api.jikan.moe/v4/manga/${params.id}`).then(
-        (res) => {
-          setMangaDetails(res);
-          console.log(res);
-        }
-      );
-      fetchDataDetails(
-        `https://api.jikan.moe/v4/manga/${params.id}/statistics`
-      ).then((res) => {
-        setMangaStats(res);
-        console.log(res);
-      });
-      fetchDataDetails(
-        `https://api.jikan.moe/v4/manga/${params.id}/characters`
-      ).then((res) => {
-        setMangaCharacters(res.slice(0, 25));
-        console.log(res);
-      });
-      fetchDataDetails(
-        `https://api.jikan.moe/v4/manga/${params.id}/recommendations`
-      ).then((res) => {
-        setMangaRecommendations(res.slice(0, 25));
-        console.log(res);
-      });
-      fetchDataDetails(
-        `https://api.jikan.moe/v4/manga/${params.id}/reviews`
-      ).then((res) => {
-        setMangaReviews(res);
-        console.log(res);
-      });
+    if (params.id) {
+      setMangaDetails(manga.find((manga) => +manga.mal_id === +params.id));
     }
-
-    fetchOneTime = false;
   }, [params.id]);
 
   return (
     <>
-      {mangaDetails.mal_id && mangaStats && (
-        <MangaDetails data={mangaDetails} userId="'''" />
+      {mangaDetails.mal_id && <MangaDetails data={mangaDetails} userId="'''" />}
+
+      {mangaDetails.mal_id && (
+        <Recommendations
+          data={manga.filter(
+            (manga) =>
+              manga.mal_id !== mangaDetails.mal_id &&
+              manga.genres.some((genre) => mangaDetails.genres.includes(genre))
+          )}
+          color="primary2"
+        />
       )}
-
-      {mangaCharacters && <Characters data={mangaCharacters} />}
-
-      {mangaRecommendations && <Recommendations data={mangaRecommendations} />}
-      {mangaReviews && <Reviews data={mangaReviews} />}
     </>
   );
 };

@@ -1,11 +1,8 @@
 import google from "./google.png";
 import apple from "./apple.png";
-import googleIcon from "./google_icon.png";
 
 import mobileImg from "./mobile.png";
 import heroImg from "./hero.png";
-
-import dotsImg from "./dots.png";
 
 import img from "./img.jpg";
 import img2 from "./img2.jpg";
@@ -39,20 +36,12 @@ import avatar10 from "./avatar10.jpg";
 import avatar11 from "./avatar11.png";
 import avatar12 from "./avatar12.png";
 
-import sponsor1 from "./sponsor1.png";
-import sponsor2 from "./sponsor2.png";
-import sponsor3 from "./sponsor3.png";
-import sponsor4 from "./sponsor4.png";
-import sponsor5 from "./sponsor5.png";
-
 export {
   heroImg,
   mobileImg,
-  dotsImg,
   img4,
   google,
   apple,
-  googleIcon,
   img,
   img2,
   img3,
@@ -81,9 +70,4 @@ export {
   avatar10,
   avatar11,
   avatar12,
-  sponsor1,
-  sponsor2,
-  sponsor3,
-  sponsor4,
-  sponsor5,
 };

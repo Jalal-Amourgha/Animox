@@ -24,6 +24,7 @@ export const PATCH = async (request, { params }) => {
     img,
     statu = "",
     score,
+    id,
     note = "",
     createdAt,
     newImg,
@@ -47,6 +48,7 @@ export const PATCH = async (request, { params }) => {
         img: img,
         statu: statu,
         score: score,
+        id: id,
         createdAt: createdAt,
       });
     } else if (type === "review") {
@@ -55,6 +57,7 @@ export const PATCH = async (request, { params }) => {
         img: img,
         score: score,
         review: note,
+        id: id,
         createdAt: createdAt,
       });
     } else if (type === "readlist") {
@@ -63,6 +66,7 @@ export const PATCH = async (request, { params }) => {
         img: img,
         statu: statu,
         score: score,
+        id: id,
         createdAt: createdAt,
       });
     } else if (type === "banner") {

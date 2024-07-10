@@ -11,27 +11,11 @@ import { AnimeProps, PopularAnimesProps } from "@/types";
 
 const AnimeSlider = ({
   title,
-  type,
-  id,
-  url,
+  data = [],
   header = true,
   btn = true,
 }: PopularAnimesProps) => {
-  const [data, setData] = useState<any[]>([]);
-
   const router = useRouter();
-
-  const fetchAnimes = async (url: string) => {
-    const res = await fetch(url);
-    const data = await res.json();
-    return setData(data.data);
-  };
-
-  useEffect(() => {
-    if (url) {
-      fetchAnimes(url);
-    }
-  }, [url]);
 
   var settings = {
     dots: false,
@@ -85,25 +69,26 @@ const AnimeSlider = ({
           <h1>Loading ...</h1>
         ) : (
           <Slider {...settings}>
-            {data.map((anime: AnimeProps, index) => (
-              <div key={index}>
-                <div className="relative h-[50vh] md:h-[40vh] w-full">
-                  <Image
-                    src={anime.images.jpg.large_image_url}
-                    sizes="100%"
-                    fill
-                    className="rounded-lg object-cover cursor-pointer"
-                    alt="anime img"
-                  />
+            {data &&
+              data.map((anime: AnimeProps, index) => (
+                <div key={index}>
+                  <div className="relative h-[50vh] md:h-[40vh] w-full">
+                    <Image
+                      src={anime.images}
+                      sizes="100%"
+                      fill
+                      className="rounded-lg object-cover cursor-pointer"
+                      alt="anime img"
+                    />
+                  </div>
+                  <h1
+                    className="text-xl text-white font-semibold hover:text-primary line-clamp-1 mt-2 cursor-pointer"
+                    onClick={() => router.push(`/anime/${anime.mal_id}`)}
+                  >
+                    {anime.title}
+                  </h1>
                 </div>
-                <h1
-                  className="text-xl text-white font-semibold hover:text-primary line-clamp-1 mt-2 cursor-pointer"
-                  onClick={() => router.push(`/anime/${anime.mal_id}`)}
-                >
-                  {anime.title}
-                </h1>
-              </div>
-            ))}
+              ))}
           </Slider>
         )}
 

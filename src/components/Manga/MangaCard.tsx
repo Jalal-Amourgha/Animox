@@ -5,7 +5,7 @@ import { RiBookLine } from "react-icons/ri";
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { format } from "date-fns";
+
 import { MotionDiv } from "../Shared/MotionDiv";
 
 interface MangaCardProps {
@@ -23,10 +23,6 @@ const MangaCard = ({ manga, index }: MangaCardProps) => {
     manga;
   const router = useRouter();
 
-  const handlePublishedIn = (date: string) => {
-    return format(new Date(date), "MMM yyyy");
-  };
-
   return (
     <MotionDiv
       variants={variants}
@@ -38,11 +34,11 @@ const MangaCard = ({ manga, index }: MangaCardProps) => {
         duration: 0.5,
       }}
       viewport={{ amount: 0 }}
-      onClick={() => router.push(`manga/${mal_id}`)}
+      onClick={() => router.push(`/manga/${mal_id}`)}
     >
       <div className="w-full h-[55vh] md:h-[45vh] relative">
         <Image
-          src={images.jpg.large_image_url}
+          src={images}
           fill
           sizes="100%"
           className="w-full h-full rounded-xl object-cover cursor-pointer"
@@ -62,9 +58,7 @@ const MangaCard = ({ manga, index }: MangaCardProps) => {
         </h1>
         <span className="bg-[#4F4C4C] rounded-lg px-1">{type}</span>
       </div>
-      <p className="text-lg font-medium text-primary2">
-        {handlePublishedIn(published.from)}
-      </p>
+      <p className="text-lg font-medium text-primary2">{published}</p>
       <div className="flex items-center gap-3 mt-2">
         {chapters !== null ? (
           <div className="flex items-center gap-1 text-xl">

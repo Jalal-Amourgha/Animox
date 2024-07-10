@@ -29,21 +29,6 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
     "favorites",
   ];
 
-  const handleOpenReviewModal = () => {
-    setOpenReviewModal(true);
-  };
-
-  const handleCloseReviewModal = () => {
-    setOpenReviewModal(false);
-  };
-
-  const handleOpenWatchlistModal = () => {
-    setOpenWatchlistModal(true);
-  };
-
-  const handleCloseWatchlistModal = () => {
-    setOpenWatchlistModal(false);
-  };
   const handlePublished = (date: string) => {
     return format(new Date(date), "yyyy");
   };
@@ -56,7 +41,7 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
             <div className="w-full">
               <div className="block lg:hidden mb-5">
                 <h1 className={`text-3xl font-semibold mb-3 text-primary2 `}>
-                  {data.title_english} ({handlePublished(data.published.from)})
+                  {data.title} ({handlePublished(data.published)})
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-4 mt-3 mb-10">
@@ -65,17 +50,17 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
                       className={`bg-primary2 py-1 px-3 text-lg font-bold text-center text-bg-color rounded-full cursor-pointer`}
                       key={index}
                     >
-                      {genre.name}
+                      {genre}
                     </div>
                   ))}
                 </div>
               </div>
               <div className="relative w-full h-[70vh]">
                 <Image
-                  src={data.images.jpg.large_image_url}
+                  src={data.images}
                   fill
                   sizes="100%"
-                  className="h-full w-full mx-auto lg:m-0 lg:max-w-full object-cover rounded-lg"
+                  className="h-full max-w-[300px] mx-auto lg:m-0 lg:max-w-full object-cover rounded-lg"
                   alt="anime img"
                 />
               </div>
@@ -83,11 +68,11 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
             <div className="lg:col-span-2">
               <div className="hidden lg:block">
                 <h1 className={`text-3xl font-semibold mb-3 text-primary2`}>
-                  {data.title_english} ({handlePublished(data.published.from)})
+                  {data.title} ({data.published})
                 </h1>
                 <p className="text-xl">
                   Written By{" "}
-                  <span className="text-primary2">{data.authors[0].name}</span>{" "}
+                  <span className="text-primary2">{data.author}</span>{" "}
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4 mt-3 mb-5">
@@ -96,7 +81,7 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
                       className={`bg-primary2 py-1 px-3 text-lg font-bold text-center text-bg-color rounded-full cursor-pointer`}
                       key={index}
                     >
-                      {genre.name}
+                      {genre}
                     </div>
                   ))}
                 </div>
@@ -118,19 +103,19 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
                   <span className={`text-primary2 capitalize me-3`}>
                     Demographics :{" "}
                   </span>{" "}
-                  {data.demographics[0].name}
+                  {data.demographics}
                 </div>
               </div>
               <div className="flex flex-wrap gap-3 mt-5">
                 <div
                   className={`flex items-center gap-3 border-[1px] border-primary2 bg-bg-color-2 text-primary2 duration-300 hover:bg-primary2 hover:text-bg-color font-bold text-lg rounded-md p-2 cursor-pointer`}
-                  onClick={handleOpenReviewModal}
+                  onClick={() => setOpenReviewModal(true)}
                 >
                   <MdRateReview className="text-2xl" /> Add Review
                 </div>
                 <div
                   className={`flex items-center gap-3 border-[1px] border-primary2 bg-bg-color-2 text-primary2 duration-300 hover:bg-primary2 hover:text-bg-color font-bold text-lg rounded-md p-2 cursor-pointer`}
-                  onClick={handleOpenWatchlistModal}
+                  onClick={() => setOpenWatchlistModal(true)}
                 >
                   <BsBookmarkCheckFill className="text-2xl" /> Add To Readlist
                 </div>
@@ -155,17 +140,17 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
       </section>
       <Modal
         isOpen={openReviewModal}
-        closeModal={handleCloseReviewModal}
-        img={data.images.jpg.large_image_url}
-        title={data.title_english}
+        closeModal={() => setOpenReviewModal(false)}
+        img={data.images}
+        title={data.title}
         type="review"
         color="primary2"
       />
       <Modal
         isOpen={openWatchlistModal}
-        closeModal={handleCloseWatchlistModal}
-        img={data.images.jpg.large_image_url}
-        title={data.title_english}
+        closeModal={() => setOpenWatchlistModal(false)}
+        img={data.images}
+        title={data.title}
         type="readlist"
         color="primary2"
       />

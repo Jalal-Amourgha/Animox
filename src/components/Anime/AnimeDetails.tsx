@@ -19,6 +19,7 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
     "status",
     "rating",
     "score",
+    "Scored by",
     "rank",
     "popularity",
     "members",
@@ -63,22 +64,6 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
     );
   };
 
-  const handleOpenReviewModal = () => {
-    setOpenReviewModal(true);
-  };
-
-  const handleCloseReviewModal = () => {
-    setOpenReviewModal(false);
-  };
-
-  const handleOpenWatchlistModal = () => {
-    setOpenWatchlistModal(true);
-  };
-
-  const handleCloseWatchlistModal = () => {
-    setOpenWatchlistModal(false);
-  };
-
   return (
     <>
       <section className="container mt-[100px] ">
@@ -87,13 +72,13 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
             <div className="w-full">
               <div className="block lg:hidden mb-5">
                 <h1 className={`text-3xl font-semibold mb-3 text-primary `}>
-                  {data.title_english} ({data.year})
+                  {data.title} ({data.year})
                 </h1>
 
                 <p className="text-slate-200">
                   Produced by{" "}
-                  <span className={`text-primary`}>{data.studios[0].name}</span>{" "}
-                  , is based on a{" "}
+                  <span className={`text-primary`}>{data.studio}</span> , is
+                  based on a{" "}
                   <span className={`text-primary`}>{data.source}</span>{" "}
                   <span
                     className={`px-1 ml-2 bg-primary text-bg-color text-lg font-bold rounded-lg`}
@@ -108,14 +93,14 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
                       className={`bg-primary py-1 px-3 text-lg font-bold text-center text-bg-color rounded-full cursor-pointer`}
                       key={index}
                     >
-                      {genre.name}
+                      {genre}
                     </div>
                   ))}
                 </div>
               </div>
               <div className="relative w-full h-[70vh]">
                 <Image
-                  src={data.images.jpg.large_image_url}
+                  src={data.images}
                   fill
                   sizes="100%"
                   className="h-full max-w-[300px] mx-auto lg:m-0 lg:max-w-full object-cover rounded-lg"
@@ -123,17 +108,16 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
                 />
               </div>
             </div>
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 flex flex-col justify-between ">
               <div className="hidden lg:block">
                 <h1 className={`text-3xl font-semibold mb-3 text-primary`}>
-                  {data.title_english} ({data.year})
+                  {data.title} ({data.year})
                 </h1>
 
                 <p className="text-slate-200">
                   Produced by{" "}
-                  <span className={`text-primary`}>{data.studios[0].name}</span>{" "}
-                  , is based on a{" "}
-                  <span className="text-primary">{data.source}</span>{" "}
+                  <span className={`text-primary`}>{data.studios}</span> , is
+                  based on a <span className="text-primary">{data.source}</span>{" "}
                   <span
                     className={`px-1 ml-2 bg-primary text-bg-color text-lg font-bold rounded-lg`}
                   >
@@ -141,37 +125,37 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
                   </span>
                 </p>
 
-                <div className="flex items-center gap-4 mt-3 mb-10">
+                <div className="flex items-center gap-4 mt-3 ">
                   {data.genres.map((genre: any, index: number) => (
                     <div
                       className={`bg-primary py-1 px-3 text-lg font-bold text-center text-bg-color rounded-full cursor-pointer`}
                       key={index}
                     >
-                      {genre.name}
+                      {genre}
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="mt-5">
+              <div className="">
                 {animeDetails.map((item) => (
                   <div className="text-lg font-semibold mb-3" key={item}>
                     <span className={`text-primary capitalize me-3`}>
                       {item} :{" "}
                     </span>{" "}
-                    {data[item]}
+                    {data[item.toLowerCase().replaceAll(" ", "_")]}
                   </div>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-3 mt-5">
+              <div className="flex flex-wrap gap-3 ">
                 <div
                   className={`flex items-center gap-3 border-[1px] border-primary bg-bg-color-2 text-primary duration-300 hover:bg-primary hover:text-bg-color font-bold text-lg rounded-md p-2 cursor-pointer`}
-                  onClick={handleOpenReviewModal}
+                  onClick={() => setOpenReviewModal(true)}
                 >
                   <MdRateReview className="text-2xl" /> Add Review
                 </div>
                 <div
                   className={`flex items-center gap-3 border-[1px] border-primary bg-bg-color-2 text-primary duration-300 hover:bg-primary hover:text-bg-color font-bold text-lg rounded-md p-2 cursor-pointer`}
-                  onClick={handleOpenWatchlistModal}
+                  onClick={() => setOpenWatchlistModal(true)}
                 >
                   <BsBookmarkCheckFill className="text-2xl" /> Add To Watchlist
                 </div>
@@ -182,23 +166,35 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
             <h1 className={`text-2xl text-primary font-semibold mb-3`}>
               Synopsis :
             </h1>
-            <div>{handleSynopsis(data.synopsis)}</div>
+            <div>
+              {data.synopsis
+                .replace("[Written by MAL Rewrite]", "")
+                .split("\n")
+                .filter((str: string) => str !== "")
+                .map((synopsis: string, index: number) => (
+                  <p className="text-slate-200 mb-5" key={index}>
+                    {synopsis}
+                  </p>
+                ))}
+            </div>
           </div>
         </div>
       </section>
       <Modal
         isOpen={openReviewModal}
-        closeModal={handleCloseReviewModal}
-        img={data.images.jpg.large_image_url}
-        title={data.title_english}
+        closeModal={() => setOpenReviewModal(false)}
+        img={data.images}
+        title={data.title}
+        id={data.mal_id}
         type="review"
         color="primary"
       />
       <Modal
         isOpen={openWatchlistModal}
-        closeModal={handleCloseWatchlistModal}
-        img={data.images.jpg.large_image_url}
-        title={data.title_english}
+        closeModal={() => setOpenWatchlistModal(false)}
+        img={data.images}
+        title={data.title}
+        id={data.mal_id}
         type="watchlist"
         color="primary"
       />

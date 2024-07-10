@@ -1,17 +1,19 @@
 "use client";
 
-import { fetchDataDetails } from "@/actions/FetchDataDetails";
 import {
   AnimeDetails,
   AnimeTrailer,
-  Characters,
   Loader,
   Recommendations,
-  Reviews,
+  ReviewCard,
 } from "@/components";
+import { animes } from "@/constants/_animes";
+import { reviews } from "@/constants/_reviews";
+import { useAppContext } from "@/context";
+import { UserProps } from "@/types";
 
 import { useSession } from "next-auth/react";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, use, useEffect, useState } from "react";
 
 interface AnimePageProps {
   params: {
@@ -20,62 +22,27 @@ interface AnimePageProps {
 }
 
 const AnimePage: FC<AnimePageProps> = ({ params }) => {
-  // const { data: session } = useSession();
-
+  const { users } = useAppContext();
   const [animeDetails, setAnimeDetails] = useState<any>({ mal_id: "" });
-  const [animeCharacters, setAnimeCharacters] = useState<any>([]);
-  const [animeRecommendations, setAnimeRecommendations] = useState<any>([]);
-  const [animeReviews, setAnimeReviews] = useState<any>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState<string>("");
-  let fetchOneTime = true;
-
-  const fetchAnimeReview = async () => {
-    const res = await fetch(
-      `https://api.jikan.moe/v4/anime/${params.id}/reviews`
-    );
-
-    const data = await res.json();
-
-    return setAnimeReviews(data.data);
-  };
+  const [a, setA] = useState<any>("");
 
   useEffect(() => {
-    if (params.id && fetchOneTime) {
-      fetchDataDetails(`https://api.jikan.moe/v4/anime/${params.id}`).then(
-        (res) => {
-          setAnimeDetails(res);
-        }
-      );
-      fetchDataDetails(
-        `https://api.jikan.moe/v4/anime/${params.id}/characters`
-      ).then((res) => {
-        setAnimeCharacters(res.slice(0, 25));
-      });
-      fetchDataDetails(
-        `https://api.jikan.moe/v4/anime/${params.id}/recommendations`
-      ).then((res) => {
-        setAnimeRecommendations(res.slice(0, 25));
-      });
-
-      fetchAnimeReview();
+    if (params.id) {
+      setAnimeDetails(animes.find((anime) => +anime.mal_id === +params.id));
     }
-
-    fetchOneTime = false;
+    console.log(users);
   }, [params.id]);
 
   useEffect(() => {
-    if (
-      animeDetails.mal_id &&
-      animeCharacters &&
-      animeRecommendations &&
-      animeReviews
-    ) {
-      setIsLoading(false);
-    }
-  }, [animeDetails, animeCharacters, animeRecommendations, animeReviews]);
+    console.log(
+      users.filter((user: UserProps) =>
+        user.reviews.some((review: any) => review.id === animeDetails.mal_id)
+      ).length
+    );
+  }, [a]);
 
-  if (isLoading) {
+  if (!animeDetails.mal_id) {
     return <Loader />;
   }
 
@@ -83,15 +50,60 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
     <>
       <AnimeDetails data={animeDetails} userId={userId} />
 
-      <Characters data={animeCharacters} />
+      <input
+        type="text"
+        className="bg-bg-color text-white"
+        value={a}
+        onChange={(e) => setA(e.target.value)}
+      />
 
-      {animeDetails && animeDetails.trailer && (
-        <AnimeTrailer url={animeDetails.trailer.embed_url} />
-      )}
+      {/* {animeDetails && animeDetails.trailer && (
+        <AnimeTrailer url={animeDetails.trailer} />
+      )} */}
 
-      {animeRecommendations && <Recommendations data={animeRecommendations} />}
+      <Recommendations
+        data={animes.filter(
+          (anime) =>
+            anime.mal_id !== animeDetails.mal_id &&
+            anime.genres.some((genre) => animeDetails.genres.includes(genre))
+        )}
+        color="primary"
+      />
 
-      {animeReviews && <Reviews data={animeReviews} />}
+      {users &&
+        animeDetails &&
+        users.filter((user: UserProps) =>
+          user.reviews.some((review: any) => review.id === animeDetails.mal_id)
+        ).length && (
+          <div className="container mt-20">
+            <h1 className="text-3xl text-primary font-semibold mb-10">
+              Reviews :
+            </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+              {users &&
+                animeDetails &&
+                users.filter((user: UserProps) =>
+                  user.reviews.some(
+                    (review: any) => review.id === animeDetails.mal_id
+                  )
+                ).length &&
+                users
+                  .filter((user: UserProps) =>
+                    user.reviews.some(
+                      (review: any) => review.id === animeDetails.mal_id
+                    )
+                  )
+                  .map((user: any, index: number) => (
+                    <ReviewCard
+                      userData={user}
+                      userReview={user.reviews.find(
+                        (review: any) => review.id === animeDetails.mal_id
+                      )}
+                    />
+                  ))}
+            </div>
+          </div>
+        )}
     </>
   );
 };

@@ -1,13 +1,19 @@
 "use client";
 
+import { animes } from "@/constants/_animes";
+import {
+  genres,
+  scores,
+  seasons,
+  sources,
+  status,
+  types,
+} from "@/constants/_data";
 import { useAppContext } from "@/context";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { PiCaretUpDownLight } from "react-icons/pi";
-import { scores, seasons, status, types } from "@/constants/_data";
-import { AnimeProps } from "@/types";
 import AnimeCard from "./AnimeCard";
-// import { fetchData } from "@/actions/FetchData";
 
 interface CustomFilterProps {
   dataType: string[] | number[];
@@ -16,33 +22,41 @@ interface CustomFilterProps {
 }
 
 const CustomFilterAnime = ({ dataType, title, classes }: CustomFilterProps) => {
-  const {
-    setData,
-    data,
-    page,
-    setPage,
-    selectedFilter,
-    setSelectedFilter,
-    fetchingPopularAnimes,
-    setFetchingPopularAnimes,
-    inView,
-    color,
-    setHideLoader,
-  } = useAppContext();
-  const baseUrl = "https://api.jikan.moe/v4/";
+  const { setData, color } = useAppContext();
   const [selectedOption, setSelectedOption] = useState<any>(title);
 
   useEffect(() => {
+    var newData: any = [];
     if (
-      selectedOption === "Statu" ||
-      selectedOption === "Type" ||
+      selectedOption === "Source" ||
+      selectedOption === "Genre" ||
       selectedOption === "Score" ||
       selectedOption === "Year"
     ) {
       return;
     }
 
-    setSelectedFilter(selectedOption);
+    if (scores.includes(selectedOption)) {
+      newData = animes.filter((anime: any) => +anime.score >= +selectedOption);
+    } else if (seasons.includes(selectedOption)) {
+      newData = animes.filter((anime: any) => +anime.year === +selectedOption);
+    } else if (sources.includes(selectedOption)) {
+      newData = animes.filter((anime: any) => anime.source === selectedOption);
+    } else if (genres.includes(selectedOption)) {
+      newData = animes.filter((anime: any) =>
+        anime.genres.includes(selectedOption)
+      );
+    }
+
+    setData(
+      newData.map((item: any, index: number) => (
+        <AnimeCard
+          key={(Math.random() * 1000000).toFixed()}
+          anime={item}
+          index={index}
+        />
+      ))
+    );
   }, [selectedOption]);
 
   return (
@@ -69,7 +83,7 @@ const CustomFilterAnime = ({ dataType, title, classes }: CustomFilterProps) => {
             leaveTo="opacity-0"
           >
             <Listbox.Options
-              className={`bg-bg-color border-2 ${
+              className={`bg-bg-color border-2 hide__scrollbar ${
                 color === "yellow" ? "border-primary2" : "border-primary"
               } h-[350px] w-[150px] absolute top-[60px] right-0
                 z-[9] overflow-y-auto rounded-lg `}

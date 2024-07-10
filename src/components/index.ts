@@ -11,7 +11,7 @@ import Footer from "./Shared/Footer";
 import Header from "./Shared/Header";
 import Loader from "./Shared/Loader";
 import BackgroundImg from "./Shared/BackgroundImg";
-import SearchBar from "./Shared/SearchBar";
+
 import Modal from "./Shared/Modal";
 
 // Anime Components
@@ -20,9 +20,11 @@ import CustomFilterAnime from "./Anime/CustomFilterAnime";
 import Animes from "./Anime/Animes";
 import AnimeDetails from "./Anime/AnimeDetails";
 import Recommendations from "./Anime/Recommendations";
-import Reviews from "./Anime/Reviews";
-import Characters from "./Anime/Characters";
+import ReviewCard from "./Shared/ReviewCard";
+
 import AnimeTrailer from "./Anime/AnimeTrailer";
+
+import AnimeSearchBar from "./Anime/AnimeSearchBar";
 
 // Manga Components
 import FilterManga from "./Manga/FilterManga";
@@ -49,16 +51,14 @@ export {
   Header,
   Loader,
   BackgroundImg,
-  SearchBar,
   AnimeCard,
   AnimeTrailer,
   Animes,
   CustomFilterAnime,
   Modal,
   AnimeDetails,
-  Characters,
   Recommendations,
-  Reviews,
+  ReviewCard,
   FilterManga,
   MangaCard,
   MangaDetails,
@@ -69,4 +69,5 @@ export {
   UserReadlist,
   UserWatchlist,
   UserReviews,
+  AnimeSearchBar,
 };

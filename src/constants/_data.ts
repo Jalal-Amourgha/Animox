@@ -138,11 +138,27 @@ export const status = ["upcoming", "airing", "complete"];
 
 export const types = ["tv", "movie", "ova", "ona", "special"];
 
-export const mangaTypes = [
-  { name: "Manga", type: "manga" },
-  { name: "Novel", type: "novel" },
-  { name: "Light Novel", type: "lightnovel" },
-  { name: "Oneshot", type: "oneshot" },
-  { name: "Manhua", type: "manhua" },
-  { name: "Manhwa", type: "manhwa" },
+export const genres = [
+  "Action",
+  "Drama",
+  "Romance",
+  "Award Winning",
+  "Suspense",
+  "Psychological",
+  "Adventure",
+  "Fantasy",
+  "Comedy",
+  "Historical",
+  "Horror",
 ];
+
+export const sources = [
+  "Manga",
+  "Light novel",
+  "Original",
+  "Web manga",
+  "Novel",
+  "Visual novel",
+];
+
+export const mangaTypes = ["All", "Manga", "Novel", "Light Novel", "Manhwa"];

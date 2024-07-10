@@ -15,7 +15,7 @@ const AboutUs = () => {
               <h1 className="text-5xl text-white font-bold leading-[120%]">
                 We Have over
                 <br />
-                <span className="text-primary">11000 Anime and Manga</span>
+                <span className="text-primary">80 Anime and Manga</span>
                 <br /> With official License
               </h1>
               <Button

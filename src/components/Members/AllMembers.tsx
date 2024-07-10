@@ -36,7 +36,7 @@ const AllMembers = ({ data }: { data: any }) => {
                   />
                 </div>
                 <div className="flex items-center justify-between w-full">
-                  <h1 className="text-xl font-bold hover:text-primary cursor-pointer">
+                  <h1 className="text-xl font-bold hover:text-primary w-[200px] cursor-pointer">
                     {member.username}
                   </h1>
                   <div className="flex items-center text-base md:text-xl gap-2 md:gap-3">

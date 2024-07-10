@@ -21,11 +21,6 @@ import {
   banner7,
   banner8,
   banner9,
-  sponsor1,
-  sponsor2,
-  sponsor3,
-  sponsor4,
-  sponsor5,
   banner,
 } from "@/assets";
 
@@ -111,14 +106,6 @@ export const avatarImgs = [
     img: avatar12,
     id: "avatar12",
   },
-];
-
-export const sponsors = [
-  { img: sponsor1, id: 1 },
-  { img: sponsor2, id: 2 },
-  { img: sponsor3, id: 3 },
-  { img: sponsor4, id: 4 },
-  { img: sponsor5, id: 5 },
 ];
 
 export const userInfo = [

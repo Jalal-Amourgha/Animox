@@ -20,7 +20,7 @@ interface AddAnimeProps {
   img: string;
   title: string;
   type: string;
-
+  id: number;
   color?: string;
 }
 
@@ -29,6 +29,7 @@ const Modal = ({
   closeModal,
   img,
   title,
+  id,
   type,
   color,
 }: AddAnimeProps) => {
@@ -57,11 +58,11 @@ const Modal = ({
         method: "PATCH",
         body: JSON.stringify({
           type: type,
-
           title: title,
           img: img,
           statu: statu,
           score: rate,
+          id: id,
           createdAt: createdAt.toString(),
         }),
       });
@@ -96,6 +97,7 @@ const Modal = ({
           score: rate,
           title: title,
           img: img,
+          id: id,
           createdAt: createdAt.toString(),
         }),
       });
@@ -168,7 +170,11 @@ const Modal = ({
                       <div className="grid grid-cols-3 mb-10">
                         <h1 className="text-2xl font-normal">Score:</h1>
 
-                        <div className="col-span-2 mx-auto">
+                        <div
+                          className={`${
+                            color === "primary2" ? "primary__2" : "primary__1"
+                          } col-span-2 mx-auto`}
+                        >
                           <StyledRating
                             name="customized-color"
                             defaultValue={2}
@@ -213,7 +219,11 @@ const Modal = ({
                     <form onSubmit={submitWatchlist}>
                       <div className="grid grid-cols-3 mb-10">
                         <h1 className="text-2xl font-normal">Score:</h1>
-                        <div className="col-span-2 mx-auto">
+                        <div
+                          className={`${
+                            color === "primary2" ? "primary__2" : "primary__1"
+                          } col-span-2 mx-auto`}
+                        >
                           <StyledRating
                             name="customized-color"
                             defaultValue={2}

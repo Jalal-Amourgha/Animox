@@ -127,10 +127,16 @@ const MyProfilePage = () => {
       <div className="max-w-fit mx-auto flex gap-4 py-3 px-5 rounded-lg bg-bg-color-2 my-10">
         {filterOptions.map((item) => (
           <button
-            className={`p-2 tex-center text-lg capitalize bg-bg-color-2 border-[1px] border-primary rounded-lg hover:bg-primary hover:text-bg-color ${
+            className={`p-2 tex-center text-lg capitalize bg-bg-color-2 border-[1px] border-${
+              filter === "readlist" ? "primary2" : "primary"
+            } rounded-lg  hover:bg-${
+              filter === "readlist" ? "primary2" : "primary"
+            } hover:text-bg-color ${
               filter === item.label
-                ? "bg-primary text-bg-color"
-                : " text-primary"
+                ? `bg-${
+                    filter === "readlist" ? "primary2" : "primary"
+                  } text-bg-color`
+                : `text-${filter === "readlist" ? "primary2" : "primary"}`
             }`}
             onClick={() => setFilter(item.label)}
             key={item.id}
@@ -141,14 +147,18 @@ const MyProfilePage = () => {
       </div>
       <div className="max-w-[1000px] mx-auto">
         <div className="p-10">
-          {filter === "reviews" ? <UserReviews data={userData?.reviews} /> : ""}
+          {filter === "reviews" ? (
+            <UserReviews data={userData?.reviews} userInfo={userData} />
+          ) : (
+            ""
+          )}
           {filter === "watchlist" ? (
-            <UserWatchlist data={userData?.watchlist} />
+            <UserWatchlist data={userData?.watchlist} userId={userData._id} />
           ) : (
             ""
           )}
           {filter === "readlist" ? (
-            <UserReadlist data={userData?.readlist} />
+            <UserReadlist data={userData?.readlist} userId={userData?._id} />
           ) : (
             ""
           )}

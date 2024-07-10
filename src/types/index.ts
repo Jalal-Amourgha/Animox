@@ -11,11 +11,8 @@ export interface ButtonProps {
 export interface AnimeProps {
   mal_id: string;
   title: string;
-  images: {
-    jpg: {
-      large_image_url: string;
-    };
-  };
+  images: string;
+
   type: string;
   episodes: number;
   score: string;
@@ -113,9 +110,7 @@ export interface UserProps {
 export interface PopularAnimesProps {
   title?: string;
   type?: string;
-  id?: string;
-  url?: string;
-  api?: string;
+  data?: any[];
   header?: boolean;
   btn?: boolean;
 }

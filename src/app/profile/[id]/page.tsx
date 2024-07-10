@@ -18,7 +18,7 @@ interface PageProps {
 const UserPage = ({ params }: PageProps) => {
   const { users } = useAppContext();
 
-  const [userdData, setUserData] = useState<UserProps>({
+  const [userData, setUserData] = useState<UserProps>({
     _id: "",
   });
   const [filter, setFilter] = useState("reviews");
@@ -30,7 +30,7 @@ const UserPage = ({ params }: PageProps) => {
     }
   }, [params.id]);
 
-  if (!userdData._id) {
+  if (!userData._id) {
     return <Loader />;
   }
 
@@ -40,7 +40,7 @@ const UserPage = ({ params }: PageProps) => {
         <Image
           src={
             bannerImgs[
-              bannerImgs.findIndex((img) => img.id === userdData?.banner)
+              bannerImgs.findIndex((img) => img.id === userData?.banner)
             ].img
           }
           fill
@@ -60,7 +60,7 @@ const UserPage = ({ params }: PageProps) => {
         <Image
           src={
             avatarImgs[
-              avatarImgs.findIndex((img) => img.id === userdData?.image)
+              avatarImgs.findIndex((img) => img.id === userData?.image)
             ].img
           }
           className="h-full w-full rounded-full"
@@ -71,25 +71,25 @@ const UserPage = ({ params }: PageProps) => {
       </div>
 
       <h1 className="text-3xl font-semibold text-center my-10">
-        @{userdData?.username}
+        @{userData?.username}
       </h1>
 
       <div className="flex justify-center  gap-10">
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-3">
-            {userdData?.reviews.length}
+            {userData?.reviews.length}
           </h1>
           <p className="text-slate-300 uppercase">reviews</p>
         </div>
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-3">
-            {userdData?.watchlist.length}
+            {userData?.watchlist.length}
           </h1>
           <p className="text-slate-300 uppercase">watchlist</p>
         </div>
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-3">
-            {userdData?.readlist.length}
+            {userData?.readlist.length}
           </h1>
           <p className="text-slate-300 uppercase">readlist</p>
         </div>
@@ -112,17 +112,17 @@ const UserPage = ({ params }: PageProps) => {
       <div className="max-w-[1000px] mx-auto">
         <div className="p-10">
           {filter === "reviews" ? (
-            <UserReviews data={userdData?.reviews} />
+            <UserReviews data={userData?.reviews} userInfo={userData} />
           ) : (
             ""
           )}
           {filter === "watchlist" ? (
-            <UserWatchlist data={userdData?.watchlist} />
+            <UserWatchlist data={userData?.watchlist} userId={userData._id} />
           ) : (
             ""
           )}
           {filter === "readlist" ? (
-            <UserReadlist data={userdData?.readlist} />
+            <UserReadlist data={userData?.readlist} userId={userData._id} />
           ) : (
             ""
           )}

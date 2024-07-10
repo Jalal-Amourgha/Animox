@@ -3,6 +3,9 @@
 import { useAppContext } from "@/context";
 import { AnimeProps } from "@/types";
 import AnimeCard from "./AnimeCard";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
+import { animes } from "@/constants/_animes";
 
 const Animes = () => {
   const { data, ref, hideLoader } = useAppContext();
@@ -13,13 +16,11 @@ const Animes = () => {
         {data}
       </div>
 
-      {hideLoader ? (
-        ""
-      ) : (
-        <div className="flex justify-center my-16">
-          <div className="loader" ref={ref}></div>
-        </div>
-      )}
+      <div
+        className={`${hideLoader ? "hidden" : "flex"}  justify-center my-16`}
+      >
+        <div className="loader" ref={ref}></div>
+      </div>
     </section>
   );
 };

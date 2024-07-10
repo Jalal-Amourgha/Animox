@@ -6,15 +6,13 @@ import { LuTrash2 } from "react-icons/lu";
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "../Shared/Button";
+import { useAppContext } from "@/context";
 
-const UserWatchlist = ({ data }: { data?: any[] }) => {
+const UserWatchlist = ({ data, userId }: { data?: any[]; userId: string }) => {
+  const { userData } = useAppContext();
   const [statu, setStatu] = useState<string>("all");
   const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
   const router = useRouter();
-
-  const handleViewAnimes = () => {
-    router.push("/anime");
-  };
 
   const handleSelectChange = (event: any) => {
     setStatu(event.target.value);
@@ -24,13 +22,24 @@ const UserWatchlist = ({ data }: { data?: any[] }) => {
     return (
       <div className="flex justify-center flex-col mt-10">
         <h1 className="text-2xl text-center">
-          Currently, your watchlist is empty. Start curating your viewing
-          experience by adding Animes to your watchlist now!
+          {userData._id === userId
+            ? "Currently, your watchlist is empty. Start curating your viewing  experience by adding Animes to your watchlist now!"
+            : "Currently the user watchlist is empty"}
         </h1>
+        {userData._id === userId ? (
+          <Button
+            title="view Animes"
+            bg={true}
+            handleClick={() => router.push("/anime")}
+            classes="w-fit mx-auto mt-10"
+          />
+        ) : (
+          ""
+        )}
         <Button
           title="view Animes"
           bg={true}
-          handleClick={handleViewAnimes}
+          handleClick={() => router.push("/anime")}
           classes="w-fit mx-auto mt-10"
         />
       </div>
@@ -72,16 +81,6 @@ const UserWatchlist = ({ data }: { data?: any[] }) => {
                     <FaStar /> {"  "}
                     <span>{watchlist.score}</span>
                   </div>
-                  {/* {hoveredIndex === index ? (
-                    <div
-                      className="absolute top-2 right-2 md:top-1 md:right-1 h-[40px] w-[40px] rounded-full bg-[#ea2d40] flex justify-center items-center text-xl"
-                      onClick={() => handleDeleteItem(index)}
-                    >
-                      <LuTrash2 />
-                    </div>
-                  ) : (
-                    ""
-                  )} */}
                 </div>
                 <h1 className="text-xl font-semibold line-clamp-1">
                   {watchlist.title}
@@ -91,7 +90,7 @@ const UserWatchlist = ({ data }: { data?: any[] }) => {
             ) : watchlist.statu === statu ? (
               <div key={index}>
                 <div
-                  className="relative lg:h-[40vh]  h-[50vh] w-full"
+                  className="relative lg:h-[40vh] h-[50vh] w-full"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(-1)}
                 >
@@ -102,22 +101,12 @@ const UserWatchlist = ({ data }: { data?: any[] }) => {
                     className="object-cover rounded-lg cursor-pointer"
                     alt="anime img"
                   />
-                  <div className="absolute top-2 left-2 md:top-1 md:right-1  rounded-full bg-primary px-2 flex items-center w-fit gap-2 text-lg">
+                  <div className="absolute top-2 left-2 md:top-1 md:right-1  rounded-full bg-primary text-bg-color px-2 flex items-center w-fit gap-2 text-lg">
                     <FaStar /> {"  "}
                     <span>{watchlist.score}</span>
                   </div>
-                  {/* {hoveredIndex === index ? (
-                    <div
-                      className="absolute top-2 right-2 md:top-1 md:right-1 h-[40px] w-[40px] rounded-full bg-[#ea2d40] flex justify-center items-center text-xl"
-                      onClick={() => handleDeleteItem(index)}
-                    >
-                      <LuTrash2 />
-                    </div>
-                  ) : (
-                    ""
-                  )} */}
                 </div>
-                <h1 className="text-xl font-semibold mb-2 line-clamp-1">
+                <h1 className="text-xl font-semibold line-clamp-1">
                   {watchlist.title}
                 </h1>
                 <p className="text-primary italic">{watchlist.statu}</p>

@@ -1,5 +1,5 @@
 "use client";
-import { google, apple, mobileImg, dotsImg } from "@/assets";
+import { google, apple, mobileImg } from "@/assets";
 import Image from "next/image";
 
 const DownloadApp = () => {
@@ -34,12 +34,6 @@ const DownloadApp = () => {
         </div>
         <div className="">
           <div className="relative">
-            <div className="absolute bottom-0 left-0 -z-10 h-20 w-20">
-              <Image src={dotsImg} width={80} height={80} alt="img" />
-            </div>
-            <div className="absolute top-0 left-20 -z-10 h-20 w-20">
-              <Image src={dotsImg} width={80} height={80} alt="img" />
-            </div>
             <Image
               src={mobileImg}
               className="md:max-w-[100%] lg:max-w-[80%]  ml-auto"

@@ -295,7 +295,7 @@ abbr {
   }
 }
 
-@media (max-width: 746px) {
+@media (max-width: 990px) {
   .img-border-1,
   .img-border-2 {
     width: 300px;
@@ -309,9 +309,14 @@ abbr {
   }
 }
 
-.MuiRating-root > * span {
-  color: #888888 !important;
+.primary__1 > * span {
+  color: var(--primary) !important;
 }
+
+.primary__2 > * span {
+  color: var(--primary2) !important;
+}
+
 .MuiRating-root {
   font-size: 40px !important;
 }
