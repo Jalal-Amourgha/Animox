@@ -2,7 +2,6 @@
 
 import { animes } from "@/constants/_animes";
 import { useAppContext } from "@/context";
-import { AnimeProps } from "@/types";
 import { useEffect, useState } from "react";
 import AnimeCard from "./AnimeCard";
 

@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import { LuTrash2 } from "react-icons/lu";
+import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "../Shared/Button";

@@ -1,9 +1,7 @@
 "use client";
-
 import { FaStar } from "react-icons/fa";
 import { AnimeProps } from "@/types";
 import { useRouter } from "next/navigation";
-
 import Image from "next/image";
 import { MotionDiv } from "../Shared/MotionDiv";
 

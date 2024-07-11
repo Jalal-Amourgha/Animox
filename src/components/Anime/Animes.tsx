@@ -1,11 +1,6 @@
 "use client";
 
 import { useAppContext } from "@/context";
-import { AnimeProps } from "@/types";
-import AnimeCard from "./AnimeCard";
-import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
-import { animes } from "@/constants/_animes";
 
 const Animes = () => {
   const { data, ref, hideLoader } = useAppContext();

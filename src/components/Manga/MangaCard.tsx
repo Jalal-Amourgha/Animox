@@ -2,10 +2,8 @@
 
 import { FaStar } from "react-icons/fa";
 import { RiBookLine } from "react-icons/ri";
-
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-
 import { MotionDiv } from "../Shared/MotionDiv";
 
 interface MangaCardProps {

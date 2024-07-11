@@ -33,12 +33,12 @@ import MangaDetails from "./Manga/MangaDetails";
 
 // Members Components
 import AllMembers from "./Members/AllMembers";
-import MembersStats from "./Members/MembersStats";
 import PopularMembers from "./Members/PopularMembers";
 import EditImgModal from "./Profile/EditImgModal";
 import UserReadlist from "./Profile/UserReadlist";
 import UserReviews from "./Profile/UserReviews";
 import UserWatchlist from "./Profile/UserWatchlist";
+import MembersReviews from "./Members/MembersReviews";
 
 export {
   Hero,
@@ -63,8 +63,8 @@ export {
   MangaCard,
   MangaDetails,
   AllMembers,
-  MembersStats,
   PopularMembers,
+  MembersReviews,
   EditImgModal,
   UserReadlist,
   UserWatchlist,

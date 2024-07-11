@@ -2,7 +2,6 @@
 
 import { useAppContext } from "@/context";
 import { ButtonProps } from "@/types";
-import { useEffect, useState } from "react";
 
 export const Button = ({
   title,

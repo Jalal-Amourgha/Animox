@@ -14,7 +14,6 @@ interface AnimeDetailsProps {
 const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
   const [openReviewModal, setOpenReviewModal] = useState(false);
   const [openWatchlistModal, setOpenWatchlistModal] = useState(false);
-  const [readMore, setReadMore] = useState(false);
   const animeDetails = [
     "status",
     "rating",
@@ -25,44 +24,6 @@ const AnimeDetails = ({ data, userId }: AnimeDetailsProps) => {
     "members",
     "favorites",
   ];
-
-  const handleSynopsis = (synopsis: string) => {
-    let story = synopsis
-      .replace("[Written by MAL Rewrite]", "")
-      .split("\n")
-      .filter((str) => str !== "");
-    let limit = readMore ? 999 : 1;
-
-    return story.map((synopsis, index) =>
-      index < limit ? (
-        <p className="text-slate-200 mb-5" key={index}>
-          {synopsis}
-          {limit === 1 ? (
-            <span
-              className={`text-primary ml-3 cursor-pointer`}
-              onClick={() => setReadMore(true)}
-            >
-              Read more
-            </span>
-          ) : (
-            ""
-          )}
-          {index === story.length - 1 ? (
-            <span
-              className={`text-primary ml-3 cursor-pointer`}
-              onClick={() => setReadMore(false)}
-            >
-              Show less
-            </span>
-          ) : (
-            ""
-          )}
-        </p>
-      ) : (
-        ""
-      )
-    );
-  };
 
   return (
     <>

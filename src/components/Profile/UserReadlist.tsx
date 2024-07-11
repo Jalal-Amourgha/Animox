@@ -2,10 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import { LuTrash2 } from "react-icons/lu";
+import { FaStar } from "react-icons/fa";
 import { useState } from "react";
-import { Button } from "../Shared/Button";
 import { useAppContext } from "@/context";
 
 const UserReadlist = ({ data, userId }: { data: any[]; userId: string }) => {

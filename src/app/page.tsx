@@ -1,8 +1,6 @@
 import { AboutUs, AnimeSlider, DownloadApp, Hero, JoinUs } from "@/components";
-
 import { animes } from "@/constants/_animes";
 import { manga } from "@/constants/_manga";
-import Image from "next/image";
 
 export default function Home() {
   return (

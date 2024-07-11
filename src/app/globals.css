@@ -267,6 +267,22 @@ abbr {
 
 /* E N D - L O A D E R */
 
+/* S T A R T - M E M B E R */
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 400px; /* Set height to match the height of the items */
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+/* E N D - M E M B E R */
+
 .profile__background {
   height: 300px;
   width: 100%;

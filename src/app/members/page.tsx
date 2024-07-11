@@ -2,12 +2,10 @@
 import {
   AllMembers,
   BackgroundImg,
-  Loader,
-  MembersStats,
   PopularMembers,
+  MembersReviews,
 } from "@/components";
 import { useAppContext } from "@/context";
-import { useEffect, useState } from "react";
 
 const MembersPage = () => {
   const { users } = useAppContext();
@@ -23,7 +21,7 @@ const MembersPage = () => {
 
         {users && <PopularMembers data={users} />}
 
-        {/* <MembersStats /> */}
+        {users.length && <MembersReviews />}
 
         {users && <AllMembers data={users} />}
       </div>

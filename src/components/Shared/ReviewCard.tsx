@@ -1,10 +1,7 @@
 "use client";
-
 import Image from "next/image";
-
 import { BsYinYang } from "react-icons/bs";
 import { useRouter } from "next/navigation";
-import { FaStar } from "react-icons/fa6";
 import { avatarImgs } from "@/constants";
 import { UserProps } from "@/types";
 
@@ -26,10 +23,7 @@ const ReviewCard = ({
 
   return (
     <>
-      <div
-        className="bg-bg-color-2 p-6 rounded-3xl border-[1px] border-primary relative"
-        key={(Math.random() * 1000000).toFixed()}
-      >
+      <div className="bg-bg-color-2 p-6 rounded-3xl border-[1px] border-primary relative">
         <div className="flex justify-between items-center mb-5">
           <div className="flex items-center gap-3">
             <Image
@@ -52,7 +46,9 @@ const ReviewCard = ({
               </h1>
               <div className="flex items-center gap-2">
                 <p className={`${!title ? "hidden" : ""} text-gray-400`}>
-                  <span className="text-primary">{userReview?.title}'s</span>{" "}
+                  <span className="text-primary">
+                    {userReview?.title}&apos;s
+                  </span>{" "}
                   review
                 </p>
               </div>

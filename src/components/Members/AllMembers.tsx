@@ -2,7 +2,6 @@
 
 import { avatarImgs } from "@/constants";
 import Image from "next/image";
-
 import { IoBook, IoEye } from "react-icons/io5";
 import { MdRateReview } from "react-icons/md";
 import Header from "../Shared/Header";

@@ -1,5 +1,4 @@
 "use client";
-
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
@@ -7,12 +6,8 @@ import { useRouter } from "next/navigation";
 import { useAppContext } from "@/context";
 import { Rating, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
-
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
-
-import StarHalfRoundedIcon from "@mui/icons-material/StarHalfRounded";
 
 interface AddAnimeProps {
   isOpen: boolean;

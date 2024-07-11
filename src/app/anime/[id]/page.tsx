@@ -8,12 +8,10 @@ import {
   ReviewCard,
 } from "@/components";
 import { animes } from "@/constants/_animes";
-import { reviews } from "@/constants/_reviews";
+
 import { useAppContext } from "@/context";
 import { UserProps } from "@/types";
-
-import { useSession } from "next-auth/react";
-import React, { FC, use, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 interface AnimePageProps {
   params: {
@@ -25,22 +23,12 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
   const { users } = useAppContext();
   const [animeDetails, setAnimeDetails] = useState<any>({ mal_id: "" });
   const [userId, setUserId] = useState<string>("");
-  const [a, setA] = useState<any>("");
 
   useEffect(() => {
     if (params.id) {
       setAnimeDetails(animes.find((anime) => +anime.mal_id === +params.id));
     }
-    console.log(users);
   }, [params.id]);
-
-  useEffect(() => {
-    console.log(
-      users.filter((user: UserProps) =>
-        user.reviews.some((review: any) => review.id === animeDetails.mal_id)
-      ).length
-    );
-  }, [a]);
 
   if (!animeDetails.mal_id) {
     return <Loader />;
@@ -50,16 +38,9 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
     <>
       <AnimeDetails data={animeDetails} userId={userId} />
 
-      <input
-        type="text"
-        className="bg-bg-color text-white"
-        value={a}
-        onChange={(e) => setA(e.target.value)}
-      />
-
-      {/* {animeDetails && animeDetails.trailer && (
+      {animeDetails && animeDetails.trailer && (
         <AnimeTrailer url={animeDetails.trailer} />
-      )} */}
+      )}
 
       <Recommendations
         data={animes.filter(
@@ -99,6 +80,7 @@ const AnimePage: FC<AnimePageProps> = ({ params }) => {
                       userReview={user.reviews.find(
                         (review: any) => review.id === animeDetails.mal_id
                       )}
+                      key={(Math.random() * 1000000).toFixed()}
                     />
                   ))}
             </div>

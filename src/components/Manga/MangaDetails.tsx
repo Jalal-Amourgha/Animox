@@ -145,6 +145,7 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
         title={data.title}
         type="review"
         color="primary2"
+        id={data.mal_id}
       />
       <Modal
         isOpen={openWatchlistModal}
@@ -153,6 +154,7 @@ const MangaDetails = ({ data, userId }: MangaDetailsProps) => {
         title={data.title}
         type="readlist"
         color="primary2"
+        id={data.mal_id}
       />
     </>
   );

@@ -5,8 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-// import { RegisterAndLogin, } from "@/components";
-// import "animate.css";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");

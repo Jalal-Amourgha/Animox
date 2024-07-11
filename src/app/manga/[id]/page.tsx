@@ -1,12 +1,6 @@
 "use client";
-import {
-  Characters,
-  MangaDetails,
-  Recommendations,
-  Reviews,
-} from "@/components";
+import { MangaDetails, Recommendations } from "@/components";
 import { manga } from "@/constants/_manga";
-
 import { useEffect, useState } from "react";
 
 interface PageProps {
