@@ -113,4 +113,5 @@ export interface PopularAnimesProps {
   data?: any[];
   header?: boolean;
   btn?: boolean;
+  route?: string;
 }

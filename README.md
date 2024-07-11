@@ -1,4 +1,4 @@
-# Animox :japanese_goblin:
+# Animox
 
 Animox is a website built using Next.js, TypeScript, Tailwind CSS, MUI React, Headless UI, and MongoDB. This platform allows users to search for their favorite anime, manga, novels, and manhwa, filter by score, genre, year, and source, and add their reviews, watchlists, and ratings.
 
@@ -20,14 +20,6 @@ Animox is a website built using Next.js, TypeScript, Tailwind CSS, MUI React, He
   - [Headless UI]: Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.
 - **Backend**:
   - [MongoDB]: NoSQL database for storing user data, reviews, watchlists, and ratings.
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14.x or later)
-- npm (v6.x or later) or yarn (v1.x or later)
-- MongoDB (v4.x or later)
 
 ## Project Structure
 
@@ -61,7 +53,7 @@ Animox is a website built using Next.js, TypeScript, Tailwind CSS, MUI React, He
 
 ## Vercel
 
-Visit the live of the Animox Website: <a href="https://Jalal-Amourgha.github.io/Spotify-Clone/" target="_blank">Here</a>
+Visit the live of the Animox Website: <a href="https://animox-beta.vercel.app/" target="_blank">Here</a>
 
 ## Usage
 

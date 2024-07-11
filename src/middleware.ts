@@ -8,14 +8,18 @@ export async function middleware(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  const publicPaths = path === "/sign-up" || path === "/sign-in";
+  const isPublicPath = path === "/sign-up" || path === "/sign-in";
 
-  if (publicPaths && token) {
+  if (isPublicPath && token) {
     return NextResponse.redirect(new URL("/profile", req.nextUrl));
   }
-  if (!publicPaths && !token) {
+
+  if (!isPublicPath && !token) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
+
+  // Continue with the request
+  return NextResponse.next();
 }
 
 export const config = {

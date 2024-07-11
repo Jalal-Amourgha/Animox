@@ -55,6 +55,7 @@ const MembersReviews = () => {
               image: review.image,
               username: review.username,
             }}
+            title
             userReview={review}
             key={index}
           />
@@ -68,6 +69,7 @@ const MembersReviews = () => {
               image: review.image,
               username: review.username,
             }}
+            title
             userReview={review}
             key={index}
           />
@@ -81,6 +83,7 @@ const MembersReviews = () => {
               image: review.image,
               username: review.username,
             }}
+            title
             userReview={review}
             key={index}
           />

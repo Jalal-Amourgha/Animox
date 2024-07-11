@@ -14,7 +14,7 @@ const Animes = () => {
       <div
         className={`${hideLoader ? "hidden" : "flex"}  justify-center my-16`}
       >
-        <div className="loader" ref={ref}></div>
+        <div className="loader py-10" ref={ref}></div>
       </div>
     </section>
   );

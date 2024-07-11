@@ -13,6 +13,7 @@ const AnimeSlider = ({
   data = [],
   header = true,
   btn = true,
+  route = "",
 }: PopularAnimesProps) => {
   const router = useRouter();
 
@@ -96,7 +97,7 @@ const AnimeSlider = ({
             <Button
               title="View all"
               bg={true}
-              handleClick={() => router.push("/anime")}
+              handleClick={() => router.push(`/${route}`)}
             />
           </div>
         ) : (

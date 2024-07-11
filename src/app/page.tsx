@@ -10,6 +10,7 @@ export default function Home() {
         title="Upcoming Animes"
         type="upcoming"
         data={animes.filter((anime) => +anime.score >= 8.5).slice(0, 15)}
+        route="anime"
       />
       <AboutUs />
 
@@ -17,6 +18,7 @@ export default function Home() {
         title="Popular Manga"
         type="upcoming"
         data={manga.slice(0, 15)}
+        route="manga"
       />
       <JoinUs />
 
